@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <style>
+		main{
+			padding: 1rem;
+			gap: 1rem;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-evenly;
+			letter-spacing: 0.1rem;
+			
+		}
+		.wallet{
+			padding: 1rem;
+			margin: 1rem;
+			display: flex;
+			flex-direction: row;
+			border-radius: 1rem;
+			width: 80%;
+			min-width: 160px;
+			gap: 1rem;
+			aspect-ratio: 3.5 / 2;
+			background-color: #CAE9FF;
+			box-shadow: 8px 16px 16px hsl(0deg 0% 0% / 0.43);
+			
+		}
+		
+		.card-container{
+			display: flex;
+			flex-direction: column;
+			padding: 1rem;
+			width: 50%;
+			height: 100%;
+			border-radius: 1rem;	
+		}
+		
+		.card{
+			padding:0.5rem;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			width: 100%;
+			height: 15%;
+			color: black;
+			border-radius: 1rem 1rem  0  0;
+			transition: all 0.3s ease;
+			
+		}
+		
+		.card div{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		
+		.card:last-child{
+			border-radius: 1rem;
+		}
+		
+		.card:hover{
+			border: solid 0.1rem white;
+			border-radius: 1rem;
+			height: 80%;
+		}
+		.focus-card {
+			border: solid 0.1rem white;
+			border-radius: 1rem;
+			height: 100%;
+		}
+
+		.profile-container{
+			overflow: hidden;
+			padding: 1rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			color: black;
+			width: 50%;
+			height: 100%;
+			border-radius: 1rem;
+			background-color: white;
+			transition: all 0.5s ease;
+			z-index: 3;
+		}
+		
+		.pf-pic{
+			object-fit: cover;
+			border-radius: 1rem;
+			height: 50%;
+		}
+		.pf-pic img{
+			object-fit: cover;
+			height: 100%;
+			width: 80%
+		}
+		
+		.pf-pic p{
+			text-align: center;
+		}
+		
+		.profile-container div{
+			display: flex;
+			flex-direction: column;
+			writing-mode: vertical-rl;
+			font-size: clamp(0.5rem, 1.2vw, 0.9rem);
+			line-height: 1.1;
+			width: 100%;
+			height: 60%;
+		}
+		
+		.profile-container:hover{
+			border: solid 0.1rem white;
+			border-radius: 1rem;
+			transform: rotate(-90deg) scale(1.2);
+			background-color: black;
+			color: white;
+		}
+		
+		.focus-profile {
+			border: solid 0.1rem white;
+			border-radius: 1rem;
+			transform: rotate(-90deg) scale(1.2);
+			background-color: black;
+			color: white;
+		}
+
+		@media(min-width:768px){
+		
+			main{
+				flex-direction: row;
+		}
+			.wallet{
+				width: 60%;
+			}
+			
+		}
+		
+		
+		
+    </style>
+</head>
+<body>
+	<main>
+		<div class="wallet">
+			<div class="card-container">
+				<div class="card" style="background-color: yellow;">
+					<div>Bank fund</div>
+					<div style="background-color: orange;"></div>
+					<div>
+						<div>***123</div>
+						<div><b>VISA</b></div>
+					</div>
+				</div>
+				<div class="card" style="background-color: orange;">
+					<div>DBS bank</div>
+					<div style="background-color: orange;"></div>
+					<div>
+						<div>***456</div>
+						<div><b>VISA</b></div>
+					</div>
+				</div>
+				<div class="card" style="background-color: purple;">
+					<div>Nordea</div>
+					<div style="background-color: orange;"></div>
+					<div>
+						<div>***789</div>
+						<div><b>VISA</b></div>
+					</div>
+				</div>
+				<div class="card" style="background-color: black; color: white;">
+					<div>Bank fund</div>
+					<div style="background-color: orange;"></div>
+					<div>
+						<div>***159</div>
+						<div><b>VISA</b></div>
+					</div>
+				</div>
+			</div>
+			<div class="profile-container">
+				<div class="pf-info">
+					<p><b>Dob</b> 09/01/1997</p>
+					<p><b>Nationality</b> FIN</p>
+					<p><b>Hgt</b> 5'8</p>
+					<p><b>Sex</b> F</p>
+					<p><b>Hair</b> BRN</p>
+					<p><b>Religion</b> MUSLIM</p>
+				</div>
+				<div class="pf-pic">
+					<img src="pf-pic.jpg">
+					<p>Anna Kaponen</p>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+	</main>
+	<script>
+		const cards = document.getElementsByClassName("card");
+		const profile = document.getElementsByClassName('profile-container')[0];
+		let profile_clicked = 0;
+		
+		profile.addEventListener('click', function() {
+			for (let c of cards) {
+					c.classList.remove("focus-card");
+					c.style.zIndex = ""; // reset z-index
+				}
+				
+			if (profile_clicked == 0){
+				profile.classList.add("focus-profile");
+				profile_clicked = 1;
+		  }
+			else{
+				profile.classList.remove("focus-profile");
+				profile_clicked = 0;
+			}
+		});
+		
+		for (let card of cards) {
+			let clicked = 0;
+			card.addEventListener("click", function() {
+				// Remove focus from all cards
+				for (let c of cards) {
+					c.classList.remove("focus-card");
+					c.style.zIndex = ""; // reset z-index
+				}
+				profile.classList.remove("focus-profile");
+				profile_clicked = 0;
+				if (clicked == 0){
+					// Add focus to clicked card
+					card.classList.add("focus-card");
+					card.style.zIndex = 2;
+					clicked = 1;
+				}
+				else{
+					// Remove focus to clicked card
+					card.classList.remove("focus-card");
+					card.style.zIndex = "";
+					clicked = 0;
+				}
+				
+			});
+		}
+		
+
+		
+	</script>
+</body>
+</html>
+
