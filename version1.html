@@ -4,50 +4,50 @@
 <head>
     <style>
 		body{	
-			display: flex;
-			justify-content: center;
-			align-items: center;
 			align-content: center;
-			height: 100vh;
+			align-items: center;
 			background-color: #f0f0f0;
+			display: flex;
+			height: 100vh;
+			justify-content: center;
 		}
 		main{
-			padding-top: 100px;
 			display: flex;
 			flex-direction: column;
 			gap: 200px;
+			padding-top: 100px;
 		}
 		.container{
-			border-radius: 1rem;
-			position: relative;
-			min-width: 200px;
-			max-width: 600px;
 			aspect-ratio: 3.5 / 2;
 			background-color: black;
+			border-radius: 1rem;
+			min-width: 200px;
+			max-width: 600px;
+			position: relative;
 		}
 		
 		.card-container{
-			margin: 10px;
-			display: flex;
-            flex-direction: column;
-            justify-content: flex-end; 
-			position: absolute;
+			background-color: #f2f0f0;
 			border-radius: 1rem;
 			box-shadow: 8px 16px 16px hsl(0deg 0% 0% / 0.43);
-			transition: all 0.3s ease;
-			background-color: #f2f0f0;
-			width: 100%;
+			display: flex;
+            flex-direction: column;
 			height: 100%;
+			justify-content: flex-end; 
+			margin: 10px;
+			position: absolute;
+			transition: all 0.3s ease;
+			width: 100%;
 		}
 		.card-container:hover{
 			height: 105%;
+			transform: translate(-2.5%, -2.5%);
 			width: 105%;
 			z-index:1;
-			transform: translate(-2.5%, -2.5%);
 		}
 		.focus {
+			display: flex;
 		    transform: translate(-15%, -15%);
-		    display: flex;
 			z-index: 1;
 		}
 		
@@ -55,10 +55,10 @@
 		@media(min-width:768px){
 		
 			main{
-				padding-top: 100px;
 				display: flex;
 				flex-direction: row;
 				gap: 200px;
+				padding-top: 100px;
 		}
 			
 		}
@@ -85,7 +85,7 @@
 				// Remove focus from all cards
 				for (let c of cards) {
 					c.classList.remove("focus");
-					c.style.zIndex = ""; // reset z-index
+					c.style.zIndex = "";
 				}
 				if (clicked == 0){
 					// Add focus to clicked card
@@ -107,4 +107,5 @@
 	</script>
 </body>
 </html>
+
 
